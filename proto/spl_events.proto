@@ -1,0 +1,10 @@
+syntax = "proto3";
+package spl.v1;
+
+// from substreams-spl’s MintOrBurnEvent
+message MintOrBurnEvent {
+  string mint = 1;
+  string owner = 2;
+  uint64 amount = 3;
+  bool is_mint = 4;
+}

@@ -1,0 +1,33 @@
+[package]
+name = "sm_bridge_indexer"
+version = "0.0.1"
+edition = "2021"
+build = "build.rs"
+
+[lib]
+name = "substreams"
+crate-type = ["cdylib"]
+
+[dependencies]
+hex-literal = "0.3.4"
+num-bigint = "0.4"
+num-traits = "0.2.15"
+prost = "0.13.3"
+prost-types = "0.13.3"
+bs58 = "0.4"
+substreams = "0.6.0"
+substreams-solana = "0.14.1"
+substreams-solana-program-instructions = "0.2.0"
+
+[target.wasm32-unknown-unknown.dependencies]
+getrandom = { version = "0.2", features = ["custom"] }
+
+[build-dependencies]
+anyhow = "1"
+regex = "1.8"
+prost-build = "0.13.3"
+
+[profile.release]
+lto = true
+opt-level = 's'
+strip = "debuginfo"

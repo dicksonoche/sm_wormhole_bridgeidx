@@ -1,0 +1,71 @@
+specVersion: v0.1.0
+package:
+  name: sm_bridge_indexer
+  version: v0.1.0
+
+imports:
+  solana: https://spkg.io/streamingfast/solana-common-v0.3.0.spkg
+
+protobuf:
+  files:
+    - wormhole.proto
+    - spl_events.proto
+    - mydata.proto
+  importPaths:
+    - ./proto
+  excludePaths:
+    - sf/substreams/rpc
+    - sf/substreams/v1
+    - sf/substreams/sink
+    - sf/substreams/index
+    - sf/substreams/index/v1
+    - instructions.proto
+    - transactions.proto
+    - google
+
+binaries:
+  default:
+    type: wasm/rust-v1
+    file: ./target/wasm32-unknown-unknown/release/substreams.wasm
+
+modules:
+  - name: map_filter_wormhole
+    kind: map
+    inputs:
+      - map: solana:blocks_without_votes
+    output:
+      type: proto:wormhole.v1.Instructions
+    blockFilter:
+      module: solana:program_ids_without_votes
+      query:
+        string: |
+          program:worm2ZoG2kUd4vFXhvjh93UUH596ayRfgQ2MgjNMTth
+          program:wormDTUJ6AWPNvk59vGQbDvGJmqbDTdgWgAqcLBCgUb
+
+  - name: map_decode_wormhole
+    kind: map
+    inputs:
+      - map: map_filter_wormhole
+    output:
+      type: proto:wormhole.v1.WormholeMessage
+
+  - name: map_spl_mint_burn
+    kind: map
+    inputs:
+      - map: solana:blocks_without_votes
+    output:
+      type: proto:spl.v1.MintOrBurnEvent
+    blockFilter:
+      module: solana:program_ids_without_votes
+      query:
+        string: |
+          program:TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA
+
+  - name: map_my_data
+    kind: map
+    inputs:
+      - map: solana:blocks_without_votes
+    output:
+      type: proto:mydata.v1.MyData
+
+network: solana-mainnet-beta
