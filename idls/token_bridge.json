@@ -1,0 +1,65 @@
+{
+  "version": "0.1.0",
+  "name": "token_bridge",
+  "instructions": [
+    {
+      "name": "TransferTokens",
+      "discriminant": 1,
+      "accounts": [
+        {"name": "bridge", "isMut": false, "isSigner": false},
+        {"name": "message", "isMut": true, "isSigner": true},
+        {"name": "from", "isMut": true, "isSigner": false},
+        {"name": "mint", "isMut": false, "isSigner": false},
+        {"name": "fromOwner", "isMut": false, "isSigner": true},
+        {"name": "tokenBridge", "isMut": false, "isSigner": false},
+        {"name": "wrappedMeta", "isMut": false, "isSigner": false},
+        {"name": "tokenProgram", "isMut": false, "isSigner": false},
+        {"name": "systemProgram", "isMut": false, "isSigner": false},
+        {"name": "rent", "isMut": false, "isSigner": false},
+        {"name": "clock", "isMut": false, "isSigner": false}
+      ]
+    },
+    {
+      "name": "CompleteTransfer",
+      "discriminant": 2,
+      "accounts": [
+        {"name": "bridge", "isMut": false, "isSigner": false},
+        {"name": "vaa", "isMut": false, "isSigner": false},
+        {"name": "claim", "isMut": true, "isSigner": false},
+        {"name": "tokenBridge", "isMut": false, "isSigner": false},
+        {"name": "to", "isMut": true, "isSigner": false},
+        {"name": "toOwner", "isMut": false, "isSigner": false},
+        {"name": "mint", "isMut": true, "isSigner": false},
+        {"name": "wrappedMeta", "isMut": false, "isSigner": false},
+        {"name": "tokenProgram", "isMut": false, "isSigner": false},
+        {"name": "systemProgram", "isMut": false, "isSigner": false},
+        {"name": "rent", "isMut": false, "isSigner": false},
+        {"name": "clock", "isMut": false, "isSigner": false}
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "TokenBridge",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {"name": "tokenProgram", "type": "publicKey"},
+          {"name": "wrappedAssetMaster", "type": "publicKey"},
+          {"name": "authority", "type": "publicKey"}
+        ]
+      }
+    },
+    {
+      "name": "WrappedMeta",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {"name": "chain", "type": "u16"},
+          {"name": "tokenAddress", "type": "bytes"},
+          {"name": "originalDecimals", "type": "u8"}
+        ]
+      }
+    }
+  ]
+} 

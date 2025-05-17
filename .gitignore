@@ -4,6 +4,8 @@
 # Compiled source files
 target/
 
+replay.log
+
 # Sink data when running any sinker
 sink-data/
 

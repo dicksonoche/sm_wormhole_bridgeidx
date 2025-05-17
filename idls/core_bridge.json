@@ -1,0 +1,61 @@
+{
+  "version": "0.1.0",
+  "name": "core_bridge",
+  "instructions": [
+    {
+      "name": "Initialize",
+      "discriminant": 0,
+      "accounts": [
+        {"name": "bridge", "isMut": true, "isSigner": false},
+        {"name": "vaa", "isMut": true, "isSigner": false},
+        {"name": "claim", "isMut": true, "isSigner": false},
+        {"name": "fee", "isMut": true, "isSigner": false}
+      ]
+    },
+    {
+      "name": "PostMessage",
+      "discriminant": 1,
+      "accounts": [
+        {"name": "bridge", "isMut": false, "isSigner": false},
+        {"name": "message", "isMut": true, "isSigner": false},
+        {"name": "emitter", "isMut": false, "isSigner": true},
+        {"name": "sequence", "isMut": true, "isSigner": false},
+        {"name": "payer", "isMut": true, "isSigner": true},
+        {"name": "fee", "isMut": true, "isSigner": false},
+        {"name": "clock", "isMut": false, "isSigner": false},
+        {"name": "rent", "isMut": false, "isSigner": false},
+        {"name": "systemProgram", "isMut": false, "isSigner": false}
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Bridge",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {"name": "guardianSetIndex", "type": "u32"},
+          {"name": "lastLamports", "type": "u64"},
+          {"name": "config", "type": "bytes"}
+        ]
+      }
+    },
+    {
+      "name": "Message",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {"name": "vaaVersion", "type": "u8"},
+          {"name": "consistencyLevel", "type": "u8"},
+          {"name": "vaaTime", "type": "u32"},
+          {"name": "vaaSignatureAccount", "type": "publicKey"},
+          {"name": "submission", "type": "bytes"},
+          {"name": "emitterChain", "type": "u16"},
+          {"name": "emitterAddress", "type": "bytes"},
+          {"name": "sequence", "type": "u64"},
+          {"name": "payload", "type": "bytes"}
+        ]
+      }
+    }
+  ]
+} 

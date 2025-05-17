@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package wormhole_bridge.token.v1;
+
+message WormholeTokenTransfer {
+  string transaction_id = 1;
+  uint64 transfer_amount = 2;
+  string asset_address = 3;
+  string source_chain = 4;
+  string recipient_address = 5;
+  string target_chain = 6;
+  string sender_address = 7;
+  uint64 block_time = 8;
+  uint64 block_height = 9;
+  uint32 sequence_number = 10;
+  string token_symbol = 11;
+  uint32 token_decimals = 12;
+  string token_name = 13;
+}
+
+message WormholeTokenTransfers {
+  repeated WormholeTokenTransfer transfers = 1;
+} 

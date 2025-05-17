@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package wormhole_bridge.message.v1;
+
+message WormholeMessage {
+  string transaction_id = 1;
+  uint32 sequence_number = 2;
+  uint32 nonce_value = 3;
+  string source_address = 4;
+  uint32 consistency_level = 5;
+  bytes message_payload = 6;
+  uint64 block_time = 7;
+  uint64 block_height = 8;
+  uint32 source_chain = 9;
+}
+
+message WormholeMessages {
+  repeated WormholeMessage messages = 1;
+} 

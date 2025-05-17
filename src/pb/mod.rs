@@ -1,11 +1,4 @@
 // @generated
-pub mod mydata {
-    // @@protoc_insertion_point(attribute:mydata.v1)
-    pub mod v1 {
-        include!("mydata.v1.rs");
-        // @@protoc_insertion_point(mydata.v1)
-    }
-}
 pub mod sf {
     pub mod solana {
         pub mod r#type {
@@ -29,17 +22,26 @@ pub mod sf {
         }
     }
 }
-pub mod spl {
-    // @@protoc_insertion_point(attribute:spl.v1)
-    pub mod v1 {
-        include!("spl.v1.rs");
-        // @@protoc_insertion_point(spl.v1)
+pub mod wormhole_bridge {
+    pub mod message {
+        // @@protoc_insertion_point(attribute:wormhole_bridge.message.v1)
+        pub mod v1 {
+            include!("wormhole_bridge.message.v1.rs");
+            // @@protoc_insertion_point(wormhole_bridge.message.v1)
+        }
     }
-}
-pub mod wormhole {
-    // @@protoc_insertion_point(attribute:wormhole.v1)
-    pub mod v1 {
-        include!("wormhole.v1.rs");
-        // @@protoc_insertion_point(wormhole.v1)
+    pub mod nft {
+        // @@protoc_insertion_point(attribute:wormhole_bridge.nft.v1)
+        pub mod v1 {
+            include!("wormhole_bridge.nft.v1.rs");
+            // @@protoc_insertion_point(wormhole_bridge.nft.v1)
+        }
+    }
+    pub mod token {
+        // @@protoc_insertion_point(attribute:wormhole_bridge.token.v1)
+        pub mod v1 {
+            include!("wormhole_bridge.token.v1.rs");
+            // @@protoc_insertion_point(wormhole_bridge.token.v1)
+        }
     }
 }
